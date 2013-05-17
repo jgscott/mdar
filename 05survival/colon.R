@@ -2,7 +2,7 @@ library(survival)
 
 data(colon)
 summary(colon)
-?colon
+help(colon, package='survival')
 
 # First split the data into separate data sets for
 # recurrence and mortality
@@ -28,7 +28,7 @@ plot(sur1, lty=1:3, mark=4:6, xlab="Days", ylab="Fraction Without Recurrence")
 legend("topright", legend=levels(recur$rx), lty=1:3) 
 
 # We could also suppress the marks for censored events.
-plot(sur1, lty=1:3, mark.time=FALSE)
+plot(sur1, lty=1:3, mark.time=FALSE, xlab="Days", ylab="Fraction Without Recurrence")
 legend("topright", legend=levels(recur$rx), lty=1:3) 
 
 
@@ -42,7 +42,7 @@ summary(ph1)
 # Now for mortality outcomes
 mort.y = Surv(mort$time, mort$status)
 sur2 = survfit(mort.y ~ rx, data=mort)
-plot(sur2, lty=1:3, mark=4:6, xlab="Days", ylab="Fraction Surviving")
+plot(sur2, lty=1:3, mark.time=FALSE,  xlab="Days", ylab="Fraction Surviving")
 legend("topright", legend=levels(mort$rx), lty=1:3) 
 
 
@@ -59,10 +59,9 @@ summary(ph3)
 anova(ph3)
 
 
-# Dummy variable for ">= 4 positive lymph nodes is clearly influential
+# Dummy variable for ">= 4 positive lymph nodes" is clearly influential
 ph4 = coxph(mort.y ~ rx + obstruct + node4, data=mort)
 summary(ph4)
-anova(ph4)
 
 # Let's look at a survival curve
 sur4 = survfit(mort.y ~ node4, data=mort)
@@ -70,9 +69,11 @@ plot(sur4, lty=1:2, mark=4:5, xlab="Days", ylab="Fraction Surviving")
 legend("topright", legend=c("< 4", ">=4"), lty=1:2) 
 
 # Looks like proportional-hazards assumption might be suspect
-# What if we assume different baseline hazards for patients with 4 or more positive lymph nodes?
+# What if we assume different baseline hazards
+# for patients with 4 or more positive lymph nodes?
 ph5 = coxph(mort.y ~ rx + obstruct + strata(node4), data=mort)
 summary(ph5)
+?strata
 
 
 

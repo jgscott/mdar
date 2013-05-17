@@ -2,7 +2,6 @@ library(mosaic)
 
 # Use RStudio's Import Dataset button, or...
 #georgia = read.csv("georgia.csv", header=TRUE)
-names(georgia)
 summary(georgia)
 
 # Define the undercount variable as a percentage
@@ -14,15 +13,38 @@ boxplot(ucount ~ urban, data=georgia)
 # And slightly higher in counties with more poverty
 boxplot(ucount ~ poor, data=georgia)
 
-tally(~urban+poor, data=georgia)
-
-# Are these due to differences in voting equipment?
+# Differences in voting equipment?
 boxplot(ucount ~ equip, data=georgia)
 
 # Start with a two-way ANOVA model with main effects only
 lm1 = lm(ucount~urban+poor,data=georgia)
-coef(lm1)
+summary(lm1)
 
-# Question 1: Describe your uncertainty about the "urban" and "poor" effect sizes
+# Notice there are few poor, urban counties
+# This contra-indicates the use of an interaction
+xtabs(~urban+poor, data=georgia)
 
-# Question 2: Adjusting for the urban and poor variables, is there an equipment effect?
+
+##################
+# Model uncertainty
+##################
+# Adjusting for the urban and poor variables, is there an equipment effect?
+
+lm2 = lm(ucount ~ urban + poor + equip,data=georgia)
+summary(lm2)
+
+# What kinds of coefficients would we see
+# if we "shuffled the cards" for equipment?
+
+lm(ucount ~ urban + poor + shuffle(equip), data=georgia)
+
+# A permutation test
+perm1 = do(1000)*lm(ucount ~ urban + poor + shuffle(equip), data=georgia)
+hist(perm1$r.squared)
+
+summary(lm2)
+prop(perm1$r.squared > 0.2368)
+
+# This is the nonparametric version of an F test
+anova(lm2)
+

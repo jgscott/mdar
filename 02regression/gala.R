@@ -3,9 +3,7 @@
 # Load the libraries
 library(mosaic)
 
-
 # Import the gala.csv data set
-
 plot(Species~Area, data=gala)
 
 # Looks much better on a log-log scale
@@ -36,7 +34,8 @@ sd(myboot)
 summary(lm3)
 
 ## Show the 3d plot
-# This may not work on your computer.
+## Pedagogical purposes only...
+## This may not work on your computer.
 library(rgl)
 G3 = data.frame(LogElevation = log(gala$Elevation), LogArea = log(gala$Area), LogSpecies = log(gala$Species))
 plot3d(G3, size=7)

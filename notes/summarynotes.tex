@@ -7,7 +7,8 @@
 \newcommand{\1}[1]{\mathbf{1}_{\{ {#1} \}}}
 
 \usepackage{amsmath}
-\usepackage[garamond]{mathdesign}
+\usepackage{amssymb}
+%\usepackage[garamond]{mathdesign}
 \usepackage{url}
 \usepackage{setspace}
 
@@ -49,7 +50,7 @@
 \newcommand{\N}{\mbox{N}}
 
 \begin{document}
-\spacing{1.25}
+\spacing{1.2}
 
 \maketitle% this prints the handout title, author, and date
 
@@ -65,11 +66,11 @@ y_i = \hat{y}_i + e_i = \mbox{Group mean} + \mbox{Residual} \, .
 $$
 More generally, $\hat{y}_i$ is the predicted or fitted value from the model.  The residual is often called the ``error,'' but it need not be an error in the sense of observational noise.  More often it is just the sum of all the effects we've chosen to leave out of the model.  Residuals should have a mean of zero.  If not, we could improve the model by moving the group means up or down.
 
-Take the simple case of a single grouping variable $x$ with two levels: ``on'' ($x=1)$ and ``off'' ($x=0$).  We can write this model in ``baseline/offset'' form:
+\paragraph{Dummy variables.}  We usually express group-wise models in terms of \textit{indicator} or \textit{dummy} variables.  Take the simple case of a single grouping variable $x$ with two levels: ``on'' ($x=1)$ and ``off'' ($x=0$).  We can write this model in ``baseline/offset'' form:
 $$
 y_i = \beta_0 + \beta_1 \1{x_i=1} + e_i \, .
 $$
-The quantity $\1{x_i=1}$ is called an \textit{indicator} or \textit{dummy} variable; it takes the value 1 when $x_i=1$, and the value 0 otherwise.   We call $\beta_0$ and $\beta_1$ the \textit{coefficients} of the model.  This way of expressing the model implies the following.
+The quantity $\1{x_i=1}$ is called a dummy variable; it takes the value 1 when $x_i=1$, and the value 0 otherwise.   We call $\beta_0$ and $\beta_1$ the \textit{coefficients} of the model.  This way of expressing the model implies the following.
 \begin{eqnarray*}
 \mbox{Group mean for case where $x$ is off} &=& \beta_0 \\
 \mbox{Group mean for case where $x$ is on} &=& \beta_0 + \beta_1 \, .
@@ -79,14 +80,6 @@ Therefore, we can think of $\beta_0$ as the baseline (or \textit{intercept}), an
 We estimate the values of $\beta_0$ and $\beta_1$ using the least-squares criterion: that is, make the sum of squared errors, $\sum_{i=1}^n e_i^2$, as small as possible.  It turns out that this is mathematically equivalent to computing the group-wise means separately.  In light of this, you might wonder: why bother with the baseline/offset form? One reason is simple: we are often interested not in the means themselves, but in 
 the \textit{differences} between the means (in this case, the offset $\beta_1$).
 
-
-\paragraph{More than two levels.}
-
-If the predictor $x$ has more than two levels, we must expand it in terms of more than one dummy variable.  Suppose that $x$ can take four levels, labeled arbitrarily as $0$ through $3$.  Then our model is
-$$
-y_i = \beta_0 + \beta_1^{(1)} \1{x_i=1} + \beta_1^{(2)} \1{x_i=2} + \beta_1^{(3)} \1{x_i=3} + e_i \, .
-$$
-More generally, $\beta_j^{(k)}$ is the coefficient associated with the $k$th level of the $j$th variable.  Notice that there is no dummy variable for the case $x = 0$: this is the baseline case, whose group mean is described by the intercept $\beta_0$.  In general, for a categorical variable with $K$ levels, we will have $K-1$ dummy variables.
 
 \paragraph{Variance decomposition and $R^2$.}
 
@@ -107,6 +100,16 @@ $$
 MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y}_i)^2 \, ,
 $$
 where $n$ is the sample size.
+
+
+\paragraph{More than two levels.}
+
+If the predictor $x$ has more than two levels, we must expand it in terms of more than one dummy variable.  Suppose that $x$ can take four levels, labeled arbitrarily as $0$ through $3$.  Then our model is
+$$
+y_i = \beta_0 + \beta_1^{(1)} \1{x_i=1} + \beta_1^{(2)} \1{x_i=2} + \beta_1^{(3)} \1{x_i=3} + e_i \, .
+$$
+More generally, $\beta_j^{(k)}$ is the coefficient associated with the $k$th level of the $j$th variable.  Notice that there is no dummy variable for the case $x = 0$: this is the baseline case, whose group mean is described by the intercept $\beta_0$.  In general, for a categorical variable with $K$ levels, we will have $K-1$ dummy variables.
+
 
 
 \paragraph{More than one grouping variable.}  Take the case of two grouping variables $x_1$ and $x_2$, each of which can take the value $0$ (``off'') or 1 (``on'').  One approach to modeling the effect of $x_1$ and $x_2$ is to slice and dice.  That is: take subsets of the data for each of the four combinations of $x_1$ and $x_2$, and compute the mean within each subset.
@@ -150,25 +153,38 @@ How different?  The answer to this question is the classical notion of an estima
 
 The standard deviation of an estimator's sampling distribution is referred to as the \textit{standard error}.  In quoting the standard error of an estimator's sampling distribution, you are saying: ``If I were to take repeated samples from the population and use this estimator for every sample, my estimate is typically off from the truth by about this much.''  Notice that this is  a claim about a procedure, not a particular estimate.  The bigger the standard error, the less stable the estimator across different samples, and the less you can trust that estimator for any particular sample.  This is the core idea of frequentist statistics: \textit{uncertainty equals instability across different samples.}
 
-Of course, if you really could take repeated samples from the population, life would be easy.  You could simply peer into all of those alternate universes, tap each version of yourself on the shoulder, and ask, ``What estimate you get for \textit{your} sample?''  By tallying up these estimates and seeing how much they differed from one another, you could discover precisely how much confidence you should place in your own estimates of $\beta_0$ and $\beta_1$, and report appropriate error bars.\footnote{Let's ignore the obvious fact that, if you had access to all those alternate universes, you'd also have more data.  The presence of sample-to-sample variability is the important thing to focus on here.}
+Uncertainty quantification is too big a topic to treat in detail here, and I refer you to Kaplan's \textit{Statistical Modeling: A Fresh Approach} for an introductory treatment.  But the core idea of the bootstrap is quite simple, and so I'll say a few words on that.
 
-\paragraph{Bootstrapping.}
+
+\paragraph{Bootstrapping and the frequentist dream.}
+
+If you really could take repeated samples from the population, life would be easy.  You could simply peer into all of those alternate universes, tap each version of yourself on the shoulder, and ask, ``What estimate you get for \textit{your} sample?''  By tallying up these estimates and seeing how much they differed from one another, you could discover precisely how much confidence you should place in your own estimates of $\beta_0$ and $\beta_1$, and report appropriate error bars.\footnote{Let's ignore the obvious fact that, if you had access to all those alternate universes, you'd also have more data.  The presence of sample-to-sample variability is the important thing to focus on here.}  (See below.)  I refer to this thought experiment as the \textit{frequentist dream.}
 
 In reality, of course, we're stuck with one sample.  Thus we're stuck with one of two imperfect approaches for characterizing the sampling distribution: the bootstrap, or the parametric probability model.  For many data sets, there is little practical difference between the two approaches, in that they give similar standard errors.  Nonetheless, there is a conceptual distinction worth preserving.
 
-Uncertainty quantification is too big a topic to treat in detail here, and I refer you to Kaplan's \textit{Statistical Modeling: A Fresh Approach} for an introductory treatment.  But as the core idea of the bootstrap is quite simple, and so I'll say a few words on that.
 
-In most cases we can't repeatedly take samples of size $n$ from the population.  But we can repeatedly take samples of size $n$ \textit{from the sample itself}, and compute our estimator afresh for each notional sample.  The idea is that the variability of the estimates across all these notional samples can be used to approximate the sampling distribution of the corresponding estimator.  Each block of $n$ resampled data points is called a bootstrapped sample.\footnote{The term is a metaphor.  Imagine trying to climb over a tall fence.  If you don't have a rope, just ``pull yourself up by your own bootstraps.''}   Modern software makes a non-issue of the calculational tedium involved.
+In most cases we can't repeatedly take samples of size $n$ from the population.  But we can repeatedly take samples of size $n$ \textit{from the sample itself}, and compute our estimator afresh for each notional sample.  The idea is that the variability of the estimates across all these notional samples can be used to approximate the sampling distribution of the corresponding estimator.  Each block of $n$ resampled data points is called a bootstrapped sample.  Modern software makes a non-issue of the calculational tedium involved.
 
 You might be puzzled by something here.  If there are $n$ data points in the original sample, and we resample $n$ data points from this ``pseudo-population,'' won't each bootstrapped sample be precisely equal to the original sample?  It turns out that the answer is no---as long as the resampling is done \textit{with replacement} from the original sample.  Sampling with replacement means that each bootstrapped sample will have duplicates and omissions from the original sample.  These duplicates and omissions induce variation from one bootstrapped sample to the next.  Ths variation mimics the variation you'd expect to see across the real repeated samples you're unable to take.
 
 Resampling won't yield the true sampling distribution of an estimator.  Bu it is often good enough for approximating the standard error.  The quality of the approximation depends almost entirely on one thing: how closely the original sample resembles the wider population.   Alas, this often isn't under your control, and is almost always the limiting factor in the accuracy of the bootstrap.  You can't magic your way to sensible error bars by bootstrapping a biased, woefully small, or otherwise poor sample.\footnote{The approximation also depends on how many bootstrapped samples you take from the original sample.  More bootstrapped samples help---up to a point.  But taking more bootstrapped samples is never a substitute for having more actual samples in the real data set.}
 
 
+\paragraph{Confidence intervals.} We use standard errors to construct \textit{confidence intervals}, or error bars.  If $\theta$ is a parameter, $\hat{\theta}$ is an estimate of that parameter, and $\mbox{se}(\hat{\theta})$ is the standard error of the estimate, then we can quote a confidence interval of the form
+$$
+\hat{\theta} \pm z_{\alpha} \cdot \mbox{se}(\hat{\theta}) \, .
+$$
+The factor $z_{\alpha}$ is a constant that expresses your tolerance for error, denoted by $\alpha$ and expressed as a number between 0 and 1.  A typical confidence level is 0.95, meaning that you'll allow your confidence interval to miss the answer 5\% of the time ($\alpha = 0.05$)  of the time.  It's important to keep in mind that a confidence interval is a claim about the long-run properties of a statistical procedure---in how many parallel universes will the intervals so generated cover the true value?  It is not a probabilistic claim about a specific data set.
+
+If you've taken an introductory statistics course, you will likely have picked $z_\alpha$ by laborious calculations involving the $t$ distribution.  We'll skip this tedium and use some simple rules of thumb that statisticians have discovered to reasonably accurate:  For a 68\% confidence interval, choose $z_\alpha = 1$.  For a 95\% confidence interval, choose $z_{\alpha} = 2$.  For a 99.5\% confidence interval, choose $z_{\alpha} = 3$.
+
+\paragraph{The signal-to-noise ratio, a.k.a.~the $t$ statistic.}  It is also common to quote a $t$-statistic, which is simply the ratio of an estimate to its standard error: $t_{\hat{\theta}} = \hat\theta / \mbox{se}(\hat{\theta})$.  This conveys strictly less information than a confidence interval for the parameter.  They are only useful if you wish to test the null hypothesis that $\theta$ is equal to some hypothesized value $\theta_0$ (often zero).  Under the null hypothesis,
+$$
+t_{\hat{\theta}} = \frac{\hat\theta -\theta_0} { \mbox{se}(\hat{\theta})} \stackrel{(H_0)}{\rightsquigarrow} N(0,1) \, ,
+$$
+which means that the $t$-statistic approximately has a standard normal distribution under the null hypothesis.  Thus, for example, if your $t$ statistic is much bigger than $3$, then either your null hypothesis is wrong or you have seen a miracle.
+
 \paragraph{Two practical guidelines.}  First, always plot your data.  This will often give you a good sense of whether your modeling assumptions are sensible, or whether you're churning through a hapless exercise in ``garbage in, garbage out.''  Second, try never to report a guess without an error bar.  The corollary of this second point is: don't be afraid to quote an estimate with weak information!  Just make sure the error bars are appropriately wide.
-
-
-\paragraph{R commands and skills.} histograms; boxplots; group-wise summaries via mean() and lm(); factors; writing simple user-defined functions; bootstrapping
 
 
 \section{Linear regression}
@@ -368,14 +384,14 @@ Because we are fitting a model on the log-rate scale, additive changes to an $x$
 We can write their ratio of rates as
 \begin{eqnarray*}
 R_{ij} &=& \frac{\lambda_i}{\lambda_j} \\
-&=& \frac{ \exp\{ \beta_0 + \beta_1 \cdot 1 + \beta_2 x_2 + \cdots \beta_p x_p \} } { \exp\{ \beta_0 + \beta_1 \cdot 0 + \beta_2 x_2 + \cdots \beta_p x_p \} } \\
+&=& \frac{ \exp\{ \beta_0 + \beta_1 \cdot (x^{\star} + 1) + \beta_2 x_2 + \cdots \beta_p x_p \} } { \exp\{ \beta_0 + \beta_1 \cdot x^{\star} + \beta_2 x_2 + \cdots \beta_p x_p \} } \\
 \\
 &=& \exp\{ \beta_1 (x^{\star} + 1 - x^\star) \} \\
 &=& \exp (\beta_1) \, .
 \end{eqnarray*}
 Thus person $i$ experiences events events $e^{\beta_1}$ times as frequently as person $j$.
 
-\paragraph{Overdispersion.}  For most data sets outside of particle physics, the Poisson assumption is usually one of convenience, or perhaps physics envy.\footnote{In particle physics, it can be derived from first principles.}  Like the normal distribution, it is familiar and easy to work with.  It also has teeth, and may bite if used improperly.  One crucial feature of the Poisson is that its mean and variance are equal: that is, if $y_i \sim \mbox{Pois}(\lambda_i)$, then the expected value of $y_i$ is $\lambda_i$, and the standard deviation of $y_i$ is $\sqrt{\lambda_i}$.  (Since $\lambda_i$ depends on covariates, we should really be calling these the \textit{conditional} expected value and standard deviation.)
+\paragraph{Overdispersion.}  For most data sets outside of particle physics, the Poisson assumption is usually one of convenience.  Like the normal distribution, it is familiar and easy to work with.  It also has teeth, and may bite if used improperly.  One crucial feature of the Poisson is that its mean and variance are equal: that is, if $y_i \sim \mbox{Pois}(\lambda_i)$, then the expected value of $y_i$ is $\lambda_i$, and the standard deviation of $y_i$ is $\sqrt{\lambda_i}$.  (Since $\lambda_i$ depends on covariates, we should really be calling these the \textit{conditional} expected value and standard deviation.)
 
 As a practical matter, this means that if your data satisfy the Poisson assumption, then roughly $95\%$ of observations should fall within $\pm 2 \sqrt{\lambda_i}$ of their conditional mean $\lambda_i$.  This is quite narrow, and many (if not most) data sets exhibit significantly more variability about their mean.  If the conditional variance exceeds the conditional mean, the data exhibits \textit{overdispersion with respect to the Poisson}, or just \textit{overdispersion} for short.
 
@@ -383,10 +399,54 @@ Overdispersion can really mess with your standard errors.  In other words, if yo
 
 There are three common strategies for handling overdispersion:
 \begin{enumerate}
-\item Use a quasi-likelihood approach;\footnote{``family=quasipoisson'' in R's glm function}
+\item Use a quasi-likelihood approach (``family=quasipoisson'' in R's glm function);
 \item Fit a different count-data model, such as the negative binomial or Poisson-lognormal, that can accommodate overdispersion;
 \item Fit a hierarchical model.
 \end{enumerate}
+
+
+\section{Survival analysis}
+
+\paragraph{Survival times.} Suppose that we decide to run an epidemiological cohort study, which is a kind way of saying that we follow people and wait until something bad happens to them (an ``event'').  Let $T_i$ be the time elapsed from the start of the study until the event.  The random variable $T_i$ is often called a survival time---even if the event in question isn't an actual death---or alternatively, a failure time.
+
+In most studies of this kind, the goal is to understand how a subject's survival time depends on covariates:
+\begin{itemize}
+\item Under which treatment arm of a clinical trial do people survive longer?
+\item Does this computer screen last longer under manufacturing process A or B?
+\item Do criminals who read Nietzsche in prison recidivate at higher rates?
+\end{itemize}
+
+There are many ways to proceed.  We could directly model $F(t) = P(T_i \leq t)$, the cumulative distribution function of the random variable $T_i$.  Equivalently, we could model the corresponding probability density $f(t)$, or the \textit{survival curve} $S(t) = 1 - F(t) = P(T_i > t)$.  This is the most natural extension of regression analysis---specify a probability model, and describe changes in the model's parameters as a function of covariates.  Many approaches to survival analysis involve just this; examples include the Weibull, gamma, and log-normal.
+
+\paragraph{Modeling the hazard function.}
+
+An alternative approach is to model the \textit{hazard function}, denoted $h(t)$:
+$$
+h_i(t) \approx \frac{P \big(t < T_i < t + \Delta t \mid  T_i > t \big) }{\Delta t}  \, ,
+$$
+for some small time interval of width $\Delta t$.  We actually define the hazard function using calculus, as the limit of this quantity as $\Delta t$ approaches 0.  Intuitively, the hazard function is the instantaneous rate of failure at time $t$, conditional upon having survived up to time $t$.  It turns out that the density $f(t)$ and the hazard function $h(t)$ can be used to give mathematically equivalent specifications of the distribution of the random survival time $T_i$.
+
+The Cox proportional-hazards model is a model for the hazard function $h(t)$.  It is the most popular tool for survival analysis because it is simple, and because it can easily accommodate \textit{right-censoring}: that is, the presence of subjects in the data set who have not yet experienced a failure by the end of the study period.  Virtually all survival analyses involve right-censoring, which is not as easily or transparently handled in models for $f(t)$.
+
+The key assumption of the Cox model is proportionality, or separability.  Specifically, it assumes that subject $i$, having covariates $x_{i1}$ through $x_{ip}$, has the hazard function
+$$
+h_i(t) = h_0(t) \cdot \exp \left\{ \beta_0 + \beta_1 x_{i1} + \cdots \beta_p x_{ip} \right\} \, .
+$$
+Notice that $h_0(t)$ is a function of the time $t$.  We call this the \textit{baseline hazard function.}  Everything else on the right-hand side just boils down to a single scalar $\exp (\psi_i) $ that depends on a subject's covariates.  This factor uniformly inflates or deflates the baseline hazard across all values of $t$.  The Cox model is therefore \textit{semiparametric}, in that it allows a flexible nonparametric model for the baseline hazard $h_0(t)$, but requires that the effect of covariates enter through a parametric linear model.
+
+\paragraph{Interpreting the coefficients.}
+
+Consider the ratio of two hazard functions: the hazard for person $i$ with $x_1 = x^{\star} + 1$, versus the hazard for person $j$ with $x_1 = x^{\star}$.  As before, we imagine that all other covariates are held constant at values $x_2$ to $x_p$, respectively.  Thus the only difference between subjects $i$ and $j$ is a one-unit difference in the first predictor.
+
+We can write their ratio of hazard functions as
+\begin{eqnarray*}
+\frac{h_i(t)}{h_j(t)} &=& \frac{ h_0(t) \exp\{ \beta_0 + \beta_1 \cdot (x^{\star} + 1) + \beta_2 x_2 + \cdots \beta_p x_p \} } {h_0(t)  \exp\{ \beta_0 + \beta_1 x^\star + \beta_2 x_2 + \cdots \beta_p x_p \} } \\
+\\
+&=& \exp\{ \beta_1 (x^{\star} + 1 - x^\star) \} \\
+&=& \exp (\beta_1) \, .
+\end{eqnarray*}
+Thus person $i$ has a hazard function $e^{\beta_1}$ times higher (or lower) than person $j$.  Crucially, this is assumed to hold across all values of $t$.  This explains why, to summarize the results of a Cox model, people usually exponentiate the coefficients and quote them as \textit{hazard ratios}.
+
 
 \end{document}
 

@@ -7,7 +7,7 @@ flutrends = read.csv("flutrends.csv", header=TRUE, row.names=1)
 flutrends2012 = read.csv("flutrends2012.csv", header=TRUE,row.names=1)
 
 # Which observations are actually present?
-t = which(!is.na(flutrends$cdcflu))
+# t = which(!is.na(flutrends$cdcflu))
 
 # the ~. syntax means regress on all variables not otherwise named
 lm1 = lm(cdcflu~., data=flutrends)
@@ -43,7 +43,7 @@ lines(yhat2, col='red')
 lines(yhat.l2, col='red', lty='dashed')
 lines(yhat.u2, col='red', lty='dashed')
 
-# Predictions do not adequately reflect the dispersion in the data
+# Predictions do not adequately reflect the over dispersion
 # This is a function of the mean-variance relationship of the Poisson
 
 

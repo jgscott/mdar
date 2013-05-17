@@ -22,6 +22,9 @@ summary(lm1)
 confint(lm1)
 
 
+##### ##### ##### 
+# End of in-class material
+##### ##### ##### 
 
 
 ##### ##### ##### 
@@ -29,8 +32,6 @@ confint(lm1)
 ##### For those with some programming experience
 ##### here is bootstrapping done in a for loop.
 ##### ##### #####
-
-
 
 nsamples = 1000
 savedsamples = matrix(0, nrow=1000, ncol=2)
