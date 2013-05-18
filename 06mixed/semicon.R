@@ -11,9 +11,6 @@ semicon$material=factor(semicon$material)
 
 plot(rate ~ material, data=semicon)
 
-# Heteroskedasticity doesn't look horrible
-sd(rate ~ material, data=semicon)
-
 plot(rate ~ pass1, data=semicon)
 
 # What about for individual materials?
@@ -22,8 +19,7 @@ plot(rate ~ pass1, data=subset(semicon, material==9))
 lm1 = lm(rate ~ split, data=subset(semicon, material==9))
 summary(lm1)
 
-# A bivariate trellis plot
-# In lattice library
+# Paneled plot
 xyplot(rate ~ split | material, data=semicon)
 
 
@@ -36,21 +32,24 @@ lm2 = lm(rate ~ split*material, data=semicon)
 summary(lm2)
 
 
-# Now two hierarchical models
-hlm1 = lmer(rate ~ split + (1 | material), data=semicon)
-hlm2 = lmer(rate ~ split + (1+split | material), data=semicon)
+# Now a hierarchical model
+hlm1 = lmer(rate ~ split + (1 + split | material), data=semicon)
+print(hlm1)
+
 
 coef(hlm1)
-coef(hlm2)
+ranef(hlm1)
+dotplot(ranef(hlm1))
+
 
 
 
 ######################
 # Advanced stuff below
+# Roll your own lattice plot
 ######################
 
 
-# Here's my code for a trellis plot
 par(mfrow=c(3,3), mar=c(4,4,3,0.5))
 lmlist=list()
 myxlab = c("Split of Exposure Sequence", rep("",8))
@@ -95,7 +94,7 @@ for(i in 1:9)
 
 	# add lines for the linear model and the hierarchical linear model
 	abline(lm1b, lty='solid')
-	abline( as.numeric(coef(hlm2)$material[i,]) , lty='dashed', col='darkgrey')
+	abline( as.numeric(coef(hlm1)$material[i,]) , lty='dashed', col='darkgrey')
 	
 	# Add the new linear model to a list in case we want to look at it later
 	lmlist[[i]] = lm1b

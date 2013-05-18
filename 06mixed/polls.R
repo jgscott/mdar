@@ -3,7 +3,11 @@ library(lme4)
 
 
 polls = read.csv("polls.csv", header=TRUE)
-polls$edu = factor(polls$edu, levels=c("NoHS", "HS", "SomeColl", "Bacc"))
+summary(polls)
+
+# "Alabama first" on the edu variable.
+# Re-order the factor levels
+levels(polls$edu) = c("NoHS", "HS", "SomeColl", "Bacc")
 
 # glm doesn't blow up...
 glm1 = glm(bush~black + female + state, family=binomial(link="logit"), data=polls)
@@ -11,11 +15,11 @@ glm1 = glm(bush~black + female + state, family=binomial(link="logit"), data=poll
 # But does give nonsense answers for some of the coefficients
 summary(glm1)
 
-summary(polls$state, 50)
+xtabs(~state, data=polls)
 
 
-# A hierarchical models works well here... shrink across states
-
+# A hierarchical models works well here...
+# partially pool across states
 hglm1 = glmer(bush ~ black + female + (1 | state), family=binomial(link="logit"), data=polls)
 
 coef(hglm1)
@@ -34,4 +38,4 @@ names(d)
 plot(d$state)
 plot(d$edu)
 
-hglm3 = glmer(bush ~ black + female + edu + (1 | state) + (female|edu) , family=binomial(link="logit"), data=polls)
+hglm3 = glmer(bush ~ black + female + edu + (1 | state) + (female | edu) , family=binomial(link="logit"), data=polls)

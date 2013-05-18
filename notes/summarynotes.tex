@@ -8,7 +8,7 @@
 
 \usepackage{amsmath}
 \usepackage{amssymb}
-%\usepackage[garamond]{mathdesign}
+\usepackage[garamond]{mathdesign}
 \usepackage{url}
 \usepackage{setspace}
 
@@ -17,8 +17,8 @@
 \graphicspath{{graphics/}}
 
 \title{Multivariate data analysis with R: key concepts}
-%\author[ ]{ }
-\date{}  % if the \date{} command is left out, the current date will be used
+\author{ James G.~Scott}
+\date{UT Summer Statistics Institute\\May 2013}  % if the \date{} command is left out, the current date will be used
 
 % The following package makes prettier tables.  We're all about the bling!
 \usepackage{booktabs}
@@ -180,7 +180,7 @@ If you've taken an introductory statistics course, you will likely have picked $
 
 \paragraph{The signal-to-noise ratio, a.k.a.~the $t$ statistic.}  It is also common to quote a $t$-statistic, which is simply the ratio of an estimate to its standard error: $t_{\hat{\theta}} = \hat\theta / \mbox{se}(\hat{\theta})$.  This conveys strictly less information than a confidence interval for the parameter.  They are only useful if you wish to test the null hypothesis that $\theta$ is equal to some hypothesized value $\theta_0$ (often zero).  Under the null hypothesis,
 $$
-t_{\hat{\theta}} = \frac{\hat\theta -\theta_0} { \mbox{se}(\hat{\theta})} \stackrel{(H_0)}{\rightsquigarrow} N(0,1) \, ,
+t_{\hat{\theta}} = \frac{\hat\theta -\theta_0} { \mbox{se}(\hat{\theta})} \quad \stackrel{(H_0)}{\longrightarrow} \quad N(0,1) \, ,
 $$
 which means that the $t$-statistic approximately has a standard normal distribution under the null hypothesis.  Thus, for example, if your $t$ statistic is much bigger than $3$, then either your null hypothesis is wrong or you have seen a miracle.
 
@@ -188,7 +188,7 @@ which means that the $t$-statistic approximately has a standard normal distribut
 
 
 \section{Linear regression}
-Example data sets and scripts: kidney, gala, ut2000, epigen
+Example data sets and scripts: kidney, gala, ut2000, epigen, profs
 
 \paragraph{One predictor.}
 
@@ -359,6 +359,7 @@ There is one minor issue here.  With a bit of algebra, you could convince yourse
 
 
 \section{Models for count outcomes}
+Example data sets and scripts: springbok, flutrends
 
 \paragraph{The Poisson model.}
 
@@ -406,6 +407,7 @@ There are three common strategies for handling overdispersion:
 
 
 \section{Survival analysis}
+Example data sets and scripts: colon, recid
 
 \paragraph{Survival times.} Suppose that we decide to run an epidemiological cohort study, which is a kind way of saying that we follow people and wait until something bad happens to them (an ``event'').  Let $T_i$ be the time elapsed from the start of the study until the event.  The random variable $T_i$ is often called a survival time---even if the event in question isn't an actual death---or alternatively, a failure time.
 

@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2008.12.28)  17 MAY 2013 16:40
+This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2008.12.28)  18 MAY 2013 14:04
 entering extended mode
 \write18 enabled.
  %&-line parsing enabled.
@@ -123,6 +123,114 @@ Package: amsfonts 2001/10/25 v2.2f
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 132.
 ))
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mathdesign.sty
+Package: mathdesign 2006/01/29 v1.55 Math Design Project
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/mdugm.cfg)
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/mdugm.sty
+Package: mdugm 2006/01/29 v1.55 urw garamond + mdugm (Math Design Project)
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdfont.def
+File: mdfont.def 2006/01/29 v1.55 (Math Design Project)
+)
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdsffont.def
+File: mdsffont.def 2006/01/29 v1.55 (Math Design Project)
+)
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdttfont.def
+File: mdttfont.def 2006/01/29 v1.55 (Math Design Project)
+)
+\symmdcal=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `mdcal' in version `bold'
+(Font)                  OMS/mdugm/m/n --> OMS/mdugm/b/n on input line 89.
+\symmdscr=\mathgroup7
+LaTeX Font Info:    Overwriting symbol font `mdscr' in version `bold'
+(Font)                  OMS/mdugm/m/n --> OMS/mdugm/b/n on input line 95.
+LaTeX Font Info:    Redeclaring math alphabet \mathfrak on input line 101.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `normal'
+(Font)                  U/euf/m/n --> U/xmdeuf/m/n on input line 101.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/b/n --> U/xmdeuf/m/n on input line 101.
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/xmdeuf/m/n --> U/xmdeuf/b/n on input line 102.
+LaTeX Info: Redefining \frak on input line 103.
+LaTeX Font Info:    Try loading font information for OT1+mdugm on input line 11
+1.
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/ot1mdugm.fd
+File: ot1mdugm.fd 2006/01/29 Fontinst v1.928 font definitions for OT1/mdugm.
+)
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/mdugm/m/n on input line 114.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/mdugm/m/it on input line 115.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/mdugm/m/n on input line 116.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/mdugm/m/n on input line 117.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/mdugm/b/n on input line 119.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/mdugm/b/it on input line 120.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/mdugm/b/n on input line 121.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/mdugm/b/n on input line 122.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/mdugm/m/n --> OT1/mdugm/m/n on input line 124.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/mdugm/b/n on input line 125.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/mdugm/m/it on input line 126.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/cmss/m/n on input line 127.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/m/n on input line 128.
+LaTeX Font Info:    Overwriting math alphabet `\mathcal' in version `normal'
+(Font)                  OMS/mdugm/m/n --> OMS/mdugm/m/n on input line 132.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/mdugm/b/n --> OT1/mdugm/b/n on input line 137.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/mdugm/b/n on input line 138.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/mdugm/b/it on input line 139.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/cmss/b/n on input line 140.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/cmtt/b/n on input line 141.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 153.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 154.
+\symlettersupright=\mathgroup8
+LaTeX Font Info:    Overwriting symbol font `lettersupright' in version `bold'
+(Font)                  OML/mdugm/m/n --> OML/mdugm/b/n on input line 190.
+LaTeX Font Info:    Redeclaring math alphabet \mathrm on input line 193.
+\symmathdesignA=\mathgroup9
+LaTeX Font Info:    Overwriting symbol font `mathdesignA' in version `bold'
+(Font)                  MDA/mdugm/m/n --> MDA/mdugm/b/n on input line 382.
+LaTeX Font Info:    Overwriting encoding scheme math defaults on input line 387
+.
+LaTeX Info: Redefining \bold on input line 399.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 421.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 422.
+\symmathdesignB=\mathgroup10
+LaTeX Font Info:    Overwriting symbol font `mathdesignB' in version `bold'
+(Font)                  MDB/mdugm/m/n --> MDB/mdugm/b/n on input line 685.
+)
+(/usr/local/texlive/2008/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+)
+LaTeX Font Info:    Try loading font information for T1+mdugm on input line 100
+.
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/t1mdugm.fd
+File: t1mdugm.fd 2006/01/29 Fontinst v1.928 font definitions for T1/mdugm.
+)))
 (/usr/local/texlive/2008/texmf-dist/tex/latex/ltxmisc/url.sty
 \Urlmuskip=\muskip11
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
@@ -183,9 +291,6 @@ Package: paralist 2002/03/18 v2.3b Extended list environments (BS)
 (/usr/local/texlive/2008/texmf-dist/tex/latex/units/units.sty
 Package: units 1998/08/04 v0.9b Typesetting units
 
-(/usr/local/texlive/2008/texmf-dist/tex/latex/base/ifthen.sty
-Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
-)
 (/usr/local/texlive/2008/texmf-dist/tex/latex/units/nicefrac.sty
 Package: nicefrac 1998/08/04 v0.9b Nice fractions
 \L@UnitsRaiseDisplaystyle=\skip50
@@ -259,6 +364,20 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 52.
 LaTeX Font Info:    ... okay on input line 52.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 52.
 LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for MDA/cmr/m/n on input line 52.
+LaTeX Font Info:    Try loading font information for MDA+cmr on input line 52.
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdacmr.fd
+File: mdacmr.fd 
+)
+LaTeX Font Info:    ... okay on input line 52.
+LaTeX Font Info:    Checking defaults for MDB/cmr/m/n on input line 52.
+LaTeX Font Info:    Try loading font information for MDB+cmr on input line 52.
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdbcmr.fd
+File: mdbcmr.fd 
+)
+LaTeX Font Info:    ... okay on input line 52.
 
 *geometry auto-detecting driver*
 *geometry detected driver: pdftex*
@@ -301,6 +420,14 @@ driver: pdftex
 
 (1in=72.27pt, 1cm=28.45pt)
 -----------------------
+
+Package mathdesign/mdugm Warning: Package 'amssymb' shouldn't be used in conjon
+ction with package mdugm, on input line 52.
+
+
+Package mathdesign/mdugm Warning: Package 'amsfonts' shouldn't be used in conjo
+nction with package mdugm, on input line 52.
+
 (/usr/local/texlive/2008/texmf-dist/tex/context/base/supp-pdf.tex
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count116
@@ -314,8 +441,26 @@ driver: pdftex
 \MPnumerator=\count120
 \everyMPtoPDFconversion=\toks23
 )
+LaTeX Font Info:    Try loading font information for OML+mdugm on input line 55
+.
+ (/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/omlmdugm.fd
+File: omlmdugm.fd 2006/01/29 Fontinst v1.928 font definitions for OML/mdugm.
+)
+LaTeX Font Info:    Try loading font information for OMS+mdugm on input line 55
+.
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/omsmdugm.fd
+File: omsmdugm.fd 2006/01/29 Fontinst v1.928 font definitions for OMS/mdugm.
+)
+LaTeX Font Info:    Try loading font information for OMX+mdugm on input line 55
+.
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/omxmdugm.fd
+File: omxmdugm.fd 2006/01/29 Fontinst v1.928 font definitions for OMX/mdugm.
+)
 LaTeX Font Info:    Try loading font information for U+msa on input line 55.
- (/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/umsa.fd
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2002/01/19 v2.2g AMS font definitions
 )
 LaTeX Font Info:    Try loading font information for U+msb on input line 55.
@@ -323,59 +468,51 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 55.
 (/usr/local/texlive/2008/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 )
+LaTeX Font Info:    Try loading font information for MDA+mdugm on input line 55
+.
 
-LaTeX Warning: No \author given.
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/mdamdugm.fd
+File: mdamdugm.fd 2006/01/29 Fontinst v1.928 font definitions for MDA/mdugm.
+)
+LaTeX Font Info:    Try loading font information for MDB+mdugm on input line 55
+.
 
-
-Overfull \hbox (0.12714pt too wide) in paragraph at lines 69--70
- \OT1/cmr/bx/n/10.95 Dummy vari-ables.[] \OT1/cmr/m/n/10.95 We usu-ally ex-pres
-s group-wise mod-els in terms of \OT1/cmr/m/it/10.95 in-di-ca-tor \OT1/cmr/m/n/
-10.95 or \OT1/cmr/m/it/10.95 dummy
- []
+(/usr/local/texlive/2008/texmf-dist/tex/latex/mathdesign/mdugm/mdbmdugm.fd
+File: mdbmdugm.fd 2006/01/29 Fontinst v1.928 font definitions for MDB/mdugm.
+)
+LaTeX Font Info:    Font shape `T1/mdugm/bx/n' in size <14.4> not available
+(Font)              Font shape `T1/mdugm/b/n' tried instead on input line 58.
+LaTeX Font Info:    Font shape `T1/mdugm/bx/n' in size <10.95> not available
+(Font)              Font shape `T1/mdugm/b/n' tried instead on input line 61.
 
 [1
 
 {/usr/local/texlive/2008/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2] [3] [4] [5] [6] [7]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 261.
-
-
-(/usr/local/texlive/2008/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 261.
- [8] [9] [10]
-[11] [12] [13] [14] [15] (./summarynotes.aux) )
+[2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] (./summarynotes.aux) )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 53 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2856 strings out of 493876
- 36740 string characters out of 1150567
- 185877 words of memory out of 3000000
- 6079 multiletter control sequences out of 10000+50000
- 14837 words of font info for 56 fonts, out of 3000000 for 5000
+ 3915 strings out of 493876
+ 52476 string characters out of 1150567
+ 189913 words of memory out of 3000000
+ 7071 multiletter control sequences out of 10000+50000
+ 96470 words of font info for 114 fonts, out of 3000000 for 5000
  714 hyphenation exceptions out of 8191
- 27i,8n,24p,821b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmbx
-10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmbx12.pfb></
-usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmex10.pfb></usr/local
-/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmmi10.pfb></usr/local/texlive/
-2008/texmf-dist/fonts/type1/bluesky/cm/cmmi6.pfb></usr/local/texlive/2008/texmf
--dist/fonts/type1/bluesky/cm/cmmi8.pfb></usr/local/texlive/2008/texmf-dist/font
-s/type1/bluesky/cm/cmr10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bl
-uesky/cm/cmr17.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/c
-mr6.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmr8.pfb></u
-sr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmr9.pfb></usr/local/te
-xlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmsy10.pfb></usr/local/texlive/200
-8/texmf-dist/fonts/type1/bluesky/cm/cmsy8.pfb></usr/local/texlive/2008/texmf-di
-st/fonts/type1/bluesky/cm/cmti10.pfb></usr/local/texlive/2008/texmf-dist/fonts/
-type1/bluesky/ams/msam10.pfb>
-Output written on summarynotes.pdf (15 pages, 146738 bytes).
+ 29i,8n,29p,822b,272s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2008/texmf-dist/fonts/enc/dvips/base/texnan
+si.enc}</usr/local/texlive/2008/texmf-dist/fonts/type1/mathdesign/mdugm/md-gmr7
+t.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/mathdesign/mdugm/md-gmr7v
+.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/mathdesign/mdugm/md-gmr7y.
+pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/mathdesign/mdugm/md-gmr8t.p
+fb></usr/local/texlive/2008/texmf-dist/fonts/type1/mathdesign/mdugm/md-gmri7m.p
+fb></usr/local/texlive/2008/../texmf-local/fonts/type1/urw/garamond/ugmm8a.pfb>
+</usr/local/texlive/2008/../texmf-local/fonts/type1/urw/garamond/ugmr8a.pfb></u
+sr/local/texlive/2008/../texmf-local/fonts/type1/urw/garamond/ugmri8a.pfb>
+Output written on summarynotes.pdf (14 pages, 147527 bytes).
 PDF statistics:
- 111 PDF objects out of 1000 (max. 8388607)
+ 81 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

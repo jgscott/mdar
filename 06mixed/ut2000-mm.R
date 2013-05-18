@@ -11,8 +11,6 @@ anova(lm1)
 summary(lm1)
 
 # A mixed-effects model with hierarchical structure for school
-#hlm1 = hglm2(GPA ~ SAT.V + SAT.Q + (1 | School), data=ut2000)
-
 hlm1 = lmer(GPA ~ SAT.V + SAT.Q + (1 | School), data=ut2000)
 print(hlm1)	# like summary for the lmer package
 
