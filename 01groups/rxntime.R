@@ -27,6 +27,7 @@ boxplot(PictureTarget.RT ~ Littered, data=rxntime)
 # Fit a model using lm
 # First by whether the scene was littered
 lm1 = lm(PictureTarget.RT ~ Littered, data=rxntime)
+lm1a = lm(PictureTarget.RT ~ Littered, data=rxntime)
 coef(lm1)
 
 resid(lm1)

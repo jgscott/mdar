@@ -1,4 +1,5 @@
 library(mosaic)
+library(multcomp)
 
 #brca = read.csv('brca.csv', header=TRUE)
 summary(brca)
@@ -14,6 +15,23 @@ glm1 = glm(recall ~ radiologist + ( . - cancer), data=brca, family=binomial)
 
 # Are there are radiologists who seem more conservative than others?
 summary(glm1)
+
+# Test a specific contrast matrix
+# This is the contrast for radiologist 34 minus radiologist 89
+contr1 = matrix( c(0,1,0,-1,rep(0,14)), 1)
+glht1 = glht(glm1, linfct = contr1)
+summary(glht1)
+
+# Can also name contrasts symbolically
+glht1 = glht(glm1, linfct = c("radiologist34 - radiologist89 = 0", "radiologist34 - radiologist66 = 0"))
+summary(glht1)
+
+# Or name a factor and a method for multiplicity correction
+glht1 = glht(glm1, linfct = mcp(radiologist = "Tukey"))
+summary(glht1)
+
+?glht # for other ways
+
 
 # Now fit a model for cancer, given recall status and radiologist
 glm2 = glm(cancer ~ . , data=brca, family=binomial)

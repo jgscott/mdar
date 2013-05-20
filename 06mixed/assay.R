@@ -17,6 +17,7 @@ xyplot(uterus ~ factor(EE) | protocol, data=assayEE)
 # C/D: adult rats
 # Define a new response
 assay$ubw = assay$uterus/assay$weight
+assay$lubw = log(assay$ubw)
 
 # Look at ubw for controls on a lab-by-protocol basis
 controls = subset(assay, EE==0 & ZM==0)
@@ -25,8 +26,11 @@ xyplot(ubw ~ factor(group) | lab + protocol, data=controls)
 # An aside: can also use ggplot2
 qplot(factor(group), ubw, facets=protocol~lab, data=controls)
 
+
+
+
 # Compute the mean control ubw within each lab/protocol
-vehiclecontrol = aggregate(ubw ~ lab + protocol, data=controls, mean) 
+vehiclecontrol = aggregate(lubw ~ lab + protocol, data=controls, mean) 
 
 # Merge the data sets
 assaywc = merge(assay, vehiclecontrol, by = c("lab", "protocol"))
@@ -37,13 +41,13 @@ assaywc = merge(assay, vehiclecontrol, by = c("lab", "protocol"), suffixes = c("
 head(assaywc)
 
 # Define the ratio of response to vehicle control response
-assaywc$ubwnorm = assaywc$ubw / assaywc$ubw.control
+assaywc$ubwnorm = assaywc$lubw - assaywc$lubw.control
 
 # Split the data set into the two sub-experiments
 # We can leave out the controls in the EE data, which
 # have average ubwnorm = 1 by construction
 xtabs(~factor(ZM) + factor(EE), data=assaywc)
-assayEE = subset(assaywc, ZM==0 & EE > 0)
+assayEE = subset(assaywc, ZM==0)
 assayZM = subset(assaywc, EE==3)
 
 xyplot(ubwnorm ~ log10(EE) | protocol, data=assayEE)
@@ -78,19 +82,19 @@ bwplot(resid(hlm1) ~ factor(EE) | lab, data=assayEE)
 # Random effects for each protocol/dosage combination
 # This attempts to ease out systematic differences due
 # to lab from those due to protocol/dosage combinations
-hlm2 = lmer(ubwnorm ~ factor(EE) + (1 | lab) + (factor(EE) | protocol), data=assayEE)
+hlm2 = lmer(ubwnorm ~ factor(EE) - 1 + (1 | lab) + (0 + factor(EE) | protocol), data=assayEE)
 
-# Notice the zero estimate for the
-# RE variances at EE = 0.01 and EE=0.03
 summary(hlm2)
 
 r2.lab = ranef(hlm2, postVar=TRUE, whichel="lab")
 dotplot(r2.lab)
 
-attr(r2.lab$lab,"postVar")
+se.lab = sqrt(attr(r2.lab$lab,"postVar"))
 
 r2.protocol = ranef(hlm2, postVar=TRUE, whichel="protocol")
 dotplot(r2.protocol)
+
+round( attr(VarCorr(hlm2)$protocol, "correlation"), 2)
 
 # Check the residuals
 bwplot(resid(hlm2) ~ factor(EE) | protocol, data=assayEE)
@@ -101,7 +105,7 @@ bwplot(resid(hlm2) ~ factor(EE) | lab, data=assayEE)
 # random effects at each level of dosage.
 # Still separable in lab/protocol at a given dosage level
 # This will take awhile!
-hlm3 = lmer(ubwnorm ~ factor(EE) + (factor(EE) | protocol) + (factor(EE) | lab), data=assayEE, control=list(maxIter = 1000, maxFN=3000))
+system.time(hlm3 <- lmer(ubwnorm ~ factor(EE) - 1  + (0 + factor(EE) | protocol) + (0 + factor(EE) | lab), data=assayEE, control=list(maxIter = 2000, maxFN=6000)) )
 
 r3.lab = ranef(hlm3, postVar=TRUE, whichel="lab")
 dotplot(r3.lab)
@@ -113,6 +117,10 @@ dotplot(r3.protocol)
 bwplot(resid(hlm3) ~ factor(EE) | protocol, data=assayEE)
 bwplot(resid(hlm3) ~ factor(EE) | lab, data=assayEE)
 
+round( attr(VarCorr(hlm3)$protocol, "correlation"), 2)
+round( attr(VarCorr(hlm3)$lab, "correlation"), 2)
+
+
 summary(hlm3)
 
 # compare this to an ordinary fixed-effects model
@@ -120,6 +128,7 @@ lm3 = lm(ubwnorm ~ factor(EE) + protocol + lab + factor(EE):protocol + factor(EE
 
 # Similar fitted values
 plot(fitted(lm3), fitted(hlm3))
+abline(0,1)
 
 # But the linear model is harder to interpret
 summary(lm3)

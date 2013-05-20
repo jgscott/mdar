@@ -1,7 +1,7 @@
 library(mosaic)
 
 # Use RStudio's Import Dataset button, or...
-#georgia = read.csv("georgia.csv", header=TRUE)
+georgia = read.csv("georgia.csv", header=TRUE)
 summary(georgia)
 
 # Define the undercount variable as a percentage
