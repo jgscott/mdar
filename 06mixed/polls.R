@@ -7,7 +7,7 @@ summary(polls)
 
 # "Alabama first" on the edu variable.
 # Re-order the factor levels
-levels(polls$edu) = c("NoHS", "HS", "SomeColl", "Bacc")
+# levels(polls$edu) = c("NoHS", "HS", "SomeColl", "Bacc")
 
 # glm doesn't blow up...
 glm1 = glm(bush~black + female + state, family=binomial(link="logit"), data=polls)

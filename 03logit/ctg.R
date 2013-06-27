@@ -8,7 +8,11 @@ ml1 = multinom(NSP ~ (. - DR), data=ctg)
 # Step-down BIC
 mystep1 = step(ml1, scope = ~ (. - DR), k = log(nrow(ctg)))
 
-summary(mystep)
+summary(mystep1)
+# Make in-sample "predictions" and check the accuracy
+predict(mystep1)
+
+table(guess = predict(mystep1), truth = ctg$NSP)
 
 
 #### Rescaling the columns of the design matrix

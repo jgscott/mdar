@@ -39,7 +39,7 @@ print(hlm1)
 
 coef(hlm1)
 ranef(hlm1)
-dotplot(ranef(hlm1))
+dotplot(ranef(hlm1, postVar=TRUE), scales=list(relation='free'))
 
 
 

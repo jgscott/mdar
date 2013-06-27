@@ -60,8 +60,9 @@ plot(pred1, shrink1)
 abline(0,1)
 
 
-
-
+hlm1 = lmer(log2(copy) ~ (1 | tissue), data=mtdna1)
+ranef(hlm1)
+  
 ##### Further out-of-class exploration ######
 
 

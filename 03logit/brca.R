@@ -36,6 +36,10 @@ summary(glht1)
 # Now fit a model for cancer, given recall status and radiologist
 glm2 = glm(cancer ~ . , data=brca, family=binomial)
 
+glm3 = glm(cancer ~ radiologist + recall + recall:radiologist + . , data=brca, family=binomial)
+summary(glm3)
+
+
 # Are there any risk factors that should be given
 # more weight in the recall decision?
 summary(glm2)

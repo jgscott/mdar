@@ -13,6 +13,11 @@ glm1 = glm(y~., data=spam, family=binomial)
 coef(glm1)
 exp(coef(glm1))
 
+sigmoid = function(x) {
+  exp(x)/(1+exp(x))
+}
+
+curve(sigmoid, from=-3,to=3)
 
 
 
@@ -50,6 +55,7 @@ tab1;
 
 # Convert to proportions; could compute FPR, FDR, etc
 prop.table(tab1)
+prop.table(tab1, margin=2)
 
 
 

@@ -43,6 +43,7 @@ anova(hlm1, hlm2)
 
 r = ranef(hlm2, postVar=TRUE)
 dotplot(r)
+dotplot(r, scales=list(relation='free'))
 
 attr(r$School,"postVar")
 
@@ -50,6 +51,8 @@ attr(r$School,"postVar")
 # Notice that the slope of the SAT.Q variable for Social Work
 # is estimated to be negative!
 coef(lm2)
+
+xyplot(GPA ~ SAT.Q | School, data=ut2000)
 
 # This is probably explained by the small sample size for Social Work
 xtabs(~School, data=ut2000)
@@ -66,4 +69,5 @@ abline(0,1)
 
 
 dotplot(ranef(hlm2, postVar = TRUE))
+dotplot(ranef(hlm2, postVar = TRUE), scales=list(relation='free'))
 

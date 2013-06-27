@@ -21,7 +21,7 @@ assay$lubw = log(assay$ubw)
 
 # Look at ubw for controls on a lab-by-protocol basis
 controls = subset(assay, EE==0 & ZM==0)
-xyplot(ubw ~ factor(group) | lab + protocol, data=controls) 
+xyplot(lubw ~ factor(group) | lab + protocol, data=controls) 
 
 # An aside: can also use ggplot2
 qplot(factor(group), ubw, facets=protocol~lab, data=controls)
@@ -53,6 +53,8 @@ assayZM = subset(assaywc, EE==3)
 xyplot(ubwnorm ~ log10(EE) | protocol, data=assayEE)
 xyplot(ubwnorm ~ log10(EE) | protocol, type=c('p', 'r'), data=assayEE)
 xyplot(ubwnorm ~ log10(EE) | lab, data=assayEE)
+bwplot(ubwnorm ~ factor(EE) | lab, data=assayEE)
+
 
 xyplot(ubwnorm ~ log10(EE) | lab, data=subset(assayEE, protocol=="A"))
 xyplot(ubwnorm ~ log10(EE) | lab, data=subset(assayEE, protocol=="B"))

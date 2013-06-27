@@ -4,7 +4,7 @@ data(colon)
 summary(colon)
 help(colon, package='survival')
 
-# First split the data into separate data sets for
+ # First split the data into separate data sets for
 # recurrence and mortality
 recur = subset(colon, etype==1)
 mort = subset(colon, etype==2)

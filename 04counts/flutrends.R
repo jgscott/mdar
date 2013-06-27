@@ -22,7 +22,7 @@ yhat.l1 = post1[,2]
 yhat.u1 = post1[,3]
 
 
-plot(flutrends$cdcflu, col='blue', pch=19)
+plot(flutrends$cdcflu, col='blue', pch=19, ylim=c(-1000,6000))
 lines(yhat1, col='red')
 lines(yhat.l1, col='red', lty='dashed')
 lines(yhat.u1, col='red', lty='dashed')
@@ -76,7 +76,7 @@ y2012.u = exp(pred3$fit + 1.96*pred3$se.fit)
 
 
 # Plot the past and future predictions together
-plot(flutrends$cdcflu, col='blue', pch=19, xlim=c(0, 215))
+plot(flutrends$cdcflu, col='blue', pch=19, xlim=c(150, 215))
 lines(yhat3, col='red')
 lines(yhat.l3, col='red', lty='dashed')
 lines(yhat.u3, col='red', lty='dashed')
