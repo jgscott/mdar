@@ -10,7 +10,7 @@ xyplot(uterus ~ EE | protocol, data=assay)
 
 # 1) Things look bunched up
 # 2) Noninear dose-response curve
-xyplot(uterus ~ factor(EE) | protocol, data=assayEE)
+xyplot(uterus ~ factor(EE) | protocol, data=subset(assay, ZM==0))
 
 # Major differences among the protocols
 # A/B: juvenile rats

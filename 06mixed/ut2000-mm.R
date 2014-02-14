@@ -1,14 +1,13 @@
 library(lme4)	# will also need to have Matrix and lattice installed
 
 
-
-ut2000 = read.csv("ut2000.csv", header=TRUE)
+ut2000 = read.csv("../02regression/ut2000.csv", header=TRUE)
 ut2000$GPA = ut2000$GPA*100
 
 # Main effects
 lm1 = lm(GPA~SAT.V + SAT.Q + School, data=ut2000)
-anova(lm1)
 summary(lm1)
+anova(lm1)
 
 # A mixed-effects model with hierarchical structure for school
 hlm1 = lmer(GPA ~ SAT.V + SAT.Q + (1 | School), data=ut2000)
@@ -34,17 +33,21 @@ lm2 = lm(GPA~SAT.V + SAT.Q + School + SAT.Q:School, data=ut2000)
 anova(lm2)
 summary(lm2)
 
+xyplot(GPA ~ SAT.Q | School, data=ut2000)
+
+
 # Now a mixed-effects model
 # This says allow the intercept and SAT.Q slopes to change among the groups
 hlm2 = lmer(GPA ~ SAT.V + SAT.Q + (1+SAT.Q|School), data=ut2000)
 coef(hlm2)
-
 anova(hlm1, hlm2)
+summary(hlm2)
 
 r = ranef(hlm2, postVar=TRUE)
 dotplot(r)
 dotplot(r, scales=list(relation='free'))
 
+# Look at the posterior variance of each block of random effects
 attr(r$School,"postVar")
 
 # Compare the estimated SAT.Q slopes
@@ -52,10 +55,9 @@ attr(r$School,"postVar")
 # is estimated to be negative!
 coef(lm2)
 
-xyplot(GPA ~ SAT.Q | School, data=ut2000)
-
 # This is probably explained by the small sample size for Social Work
 xtabs(~School, data=ut2000)
+xyplot(GPA ~ SAT.Q | School, data=ut2000)
 
 # Add the overall slope to the interaction terms
 batch1 = coef(lm2)[2] + c(0, coef(lm2)[13:21])
@@ -65,9 +67,8 @@ batch2 = coef(hlm2)$School[,3]
 plot(batch1, batch2, xlim=c(-0.3,0.2), ylim=c(-0.3,0.2))
 abline(0,1)
 # Question: why isn't the order of the original coefficients preserved?
-# (Think sample size...)
-
 
 dotplot(ranef(hlm2, postVar = TRUE))
 dotplot(ranef(hlm2, postVar = TRUE), scales=list(relation='free'))
+
 
