@@ -5,6 +5,7 @@ ut2000 = read.csv("../02regression/ut2000.csv", header=TRUE)
 ut2000$GPA = ut2000$GPA*100
 
 # Main effects
+lm0 = lm(GPA~SAT.V + SAT.Q, data=ut2000)
 lm1 = lm(GPA~SAT.V + SAT.Q + School, data=ut2000)
 summary(lm1)
 anova(lm1)

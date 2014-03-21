@@ -31,11 +31,30 @@ legend("topright", legend=levels(recur$rx), lty=1:3)
 plot(sur1, lty=1:3, mark.time=FALSE, xlab="Days", ylab="Fraction Without Recurrence")
 legend("topright", legend=levels(recur$rx), lty=1:3) 
 
-
-# The proportional hazards assumption looks reasonable.
 # Fit the Cox proportional hazards model
 ph1 = coxph(recur.y ~ rx + sex + age, data=recur)
 summary(ph1)
+
+# Diagnose the proportional-hazards assumption
+str(sur1)
+set1 = 1:sur1$strata[1]
+set2 = (sur1$strata[1] + sur1$strata[2] + 1):sum(sur1$strata)
+plot(sur1$time[set1], sur1$surv[set1], type='l')
+lines(sur1$time[set2], sur1$surv[set2])
+
+# Look at the hazard function implied by KM curve: very noisy!
+# difficult to diagnose proportional hazards graphically
+h1 = -diff(c(0, log(sur1$surv[set1])))/diff(c(0, sur1$time[set1]))
+h2 = -diff(c(0, log(sur1$surv[set2])))/diff(c(0, sur1$time[set2]))
+plot(sur1$time[set1], log(h1), type='l')
+lines(sur1$time[set2], log(h2), col='red')
+
+# Test adequacy using Schoenfeld residuals (see a textbook!)
+test1 = cox.zph(ph1)
+print(test1)
+par(mfrow=c(1,4))
+plot(test1)
+
 
 
 
