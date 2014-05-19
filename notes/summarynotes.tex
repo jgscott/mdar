@@ -252,6 +252,39 @@ We may again interpret this as three separate regression equations, each with a 
 We may be interested in a question of the form: ``How much faster or slower does $y$ grow with $x$ among the cases where $x_2 = 2$ than the cases where $x_2 = 0$?'' The estimate and error bar for $\gamma_1^{(2)}$ provide the answer.
 
 
+\paragraph{Choosing a model.}
+
+Often you'll face the problem of comparing models with different numbers of predictors, or with different powers of a single predictor.  The model with more variables will always fit the data better, but it might not be a better model, because it might end up overfitting noise in the data.
+
+For these kinds of cross-dimensional comparisons, $R^2$ is useless.  In fact, in many ways it is worse than nothing: $R^2$ will always go up when we add new predictors, even if those predictors have nothing to do with the response.  This is why it is crucial not to think of $R^2$ as measuring ``goodness of fit.''  You'll just end up tying yourself into a mental knot pondering how a ``good'' model can still be rotten.
+
+So let's put aside $R^2$.  Instead, we need a criterion that balances the twin virtues of fit and simplicity.  Put another way, we need a quantitative version of Occam's Razor, the philosophical principle that instructs us to make explanations only as complex as they need to be.  When it comes to regression models, fit and simplicity are both easily operationalized.  Models that fit more precisely have higher $R^2$, and lower residual variance.  Simpler models have fewer free parameters to estimate.
+
+Here are two commonly used criteria for scoring models according to the tradeoff they offer between fit and simplicity.
+
+\begin{description}
+
+\item[1) Adjusted $R^2$,] denoted $R^2_A$.  We recall that the original $R^2$ was defined as
+$$
+R^2 =  1 - \frac{UV}{TV} \, .
+$$
+Adjusted $R^2$ is defined in almost the same way, but with a subtle modification to punish models that have larger numbers of parameters:
+$$
+R_A^2 =  1 - \frac{UV}{TV} \cdot \left( \frac{n-1}{n-p-1} \right)  = 1 - \left\{ (1-R^2) \cdot \left( \frac{n-1}{n-p-1} \right) \right\} \, .
+$$
+Here $n$ denotes the sample size, and $p$ the number of regressors in the model (not counting the intercept), just as for the $F$ test.  Higher values of $R_A^2$ are (ostensibly) better.  But unlike $R^2$, $R^2_A$ can sometimes go down when you add another predictor to the model.  Adjusted $R^2$ is part of the standard output in most regression software, but even if you can't find it, it's easy to calculate from regular $R^2$.
+
+\item[2) AIC,] which stands for ``Akaike information criterion.''  Don't pay too much attention to the full name; what's important is not the derivation of AIC, but the manner in which it balances fit and simplicity:
+$$
+\mbox{AIC} =  \sum_{i=1}^n (y_i - \hat{y}_i)^2 + 2 p \, .
+$$
+The first term, the residual sum of squares, measures lack of fit; models with larger residuals fit the data less precisely.  The second term measures complexity; $p$ is the number of free parameters in the model, and is therefore larger for more complex models.  From this, we reason that lower values of AIC are (ostensibly) better.
+
+\end{description}
+
+Of course, the best Occam's Razor of all is to test models by having them predict $y$'s for $x$'s they've never seen before---that is, on fresh data that hasn't itself been used to fit the models.  This is called out-of-sample predictive validation, and is brutally effective at winnowing down your list of good models.  The only problem is that data is sometimes expensive, and you might not be able to collect enough extra data to run a good out-of-sample test.  That's when these other Occam's Razors can be very useful.  (Out-of-sample predictive validation can also be imperfectly approximated using cross-validation, not covered here.)
+
+
 \section{Logistic regression}
 Example data sets and scripts: spam, brca, gardasil, cmc, resume
 
