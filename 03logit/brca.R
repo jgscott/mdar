@@ -19,6 +19,7 @@ summary(glm1)
 # Test a specific contrast matrix
 # This is the contrast for radiologist 34 minus radiologist 89
 contr1 = matrix( c(0,1,0,-1,rep(0,14)), 1)
+contr1
 glht1 = glht(glm1, linfct = contr1)
 summary(glht1)
 
