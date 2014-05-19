@@ -35,15 +35,17 @@ summary(lm2)
 
 # What kinds of coefficients would we see
 # if we "shuffled the cards" for equipment?
-
 lm(ucount ~ urban + poor + shuffle(equip), data=georgia)
 
 # A permutation test
-perm1 = do(1000)*lm(ucount ~ urban + poor + shuffle(equip), data=georgia)
+perm1 = do(1000)*{
+  lm(ucount ~ urban + poor + shuffle(equip), data=georgia)
+}
 hist(perm1$r.squared)
 
 summary(lm2)
-prop(perm1$r.squared > 0.2368)
+abline(v=0.2368, col='red')
+sum(perm1$r.squared > 0.2368)
 
 # This is the nonparametric version of an F test
 anova(lm2)

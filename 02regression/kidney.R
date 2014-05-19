@@ -13,14 +13,17 @@ abline(lm1, lwd=2, col='blue')
 
 # Bootstrapping a few times by hand
 myboot = do(1000)*lm(Tot~age, data=resample(kidney))
-hist(myboot)
-sd(myboot)
+hist(myboot$age)
 confint(myboot)
+apply(myboot,2,sd)
 
 # Compare with the parametric standard errors
-summary(lm1)
 confint(lm1)
+summary(lm1)
 
+# Look at people's kidney function, adjusted for age
+plot(resid(lm1))
+identify(resid(lm1), n=5)
 
 ##### ##### ##### 
 # End of in-class material

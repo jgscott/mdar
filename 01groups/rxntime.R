@@ -27,13 +27,13 @@ boxplot(PictureTarget.RT ~ Littered, data=rxntime)
 # Fit a model using lm
 # First by whether the scene was littered
 lm1 = lm(PictureTarget.RT ~ Littered, data=rxntime)
-lm1a = lm(PictureTarget.RT ~ Littered, data=rxntime)
 coef(lm1)
 
+# The model partitions variation into predictable and unpredictable pieces
 resid(lm1)
 fitted1 = cbind(rxntime$PictureTarget.RT, fitted(lm1), resid(lm1))
 head(fitted1)
-
+head(fitted1, 15)
 
 ###################################
 # Dummy variables
@@ -87,7 +87,7 @@ summary(lm1)
 # Notice the factor command
 # This tells R that Subject is a label,
 # not a number with a meaningful magnitude.
-boxplot(PictureTarget.RT~factor(Subject), data=rxntime)
+boxplot(PictureTarget.RT ~ factor(Subject), data=rxntime)
 
 # Fit a model that accounts for subject-level variation
 lm2 = lm(PictureTarget.RT ~ factor(Subject), data=rxntime)
@@ -107,7 +107,7 @@ summary(lm2)
 # Notice that the design is balanced: 480 in each group
 mean(PictureTarget.RT ~ Littered + FarAway, data=rxntime)
 sd(PictureTarget.RT ~ Littered+FarAway, data=rxntime)
-tally( ~ Littered + FarAway, data=rxntime)
+tally( ~ Littered + FarAway, data=rxntime) # defined in mosaic
 
 
 # Fit a model with main effects only, where
@@ -142,7 +142,6 @@ lm3b = lm(PictureTarget.RT ~ FarAway + Littered, data=rxntime)
 # This will not always be true.
 # Here it is a consequence of balanced design -- no collinearity.
 coef(lm3); coef(lm3b)
-
 anova(lm3); anova(lm3b)
 
 
@@ -158,7 +157,7 @@ boxplot(resid(lm3) ~ factor(Subject), data=rxntime)
 # Looks like we have not adequately accounted for subject-specific differences
 # Fit a model with the interaction term and subject-specific dummy variables
 lm4 = lm(PictureTarget.RT ~ Littered + FarAway + Littered:FarAway + factor(Subject), data=rxntime)
-coef(lm4)
+summary(lm4)
 
 
 ###################################
@@ -169,24 +168,30 @@ coef(lm4)
 
 # Try this a few different times
 # Different coefficients each time
+# Creation myth: different (x,y) pairs come to us randomly from a population
 lm(PictureTarget.RT ~ Littered, data=resample(rxntime))
 
 # Now collect 1000 bootstrapped samples
-# do(1000) encodes a simple "for loop"
-myboot = do(1000)*lm(PictureTarget.RT ~ Littered, data=resample(rxntime))
+# do(1000) is just a simple "for loop" with a return value
+# R's basic for loops don't have return values
+myboot = do(1000)*{
+  lm(PictureTarget.RT ~ Littered, data=resample(rxntime))
+}
+head(myboot)
 
 # Summarize the sampling distributions
-hist(myboot)
-sd(myboot)
+hist(myboot$Littered)
+boot_stderr = apply(myboot, 2, sd)[1:2]
 
 # Compare with the normal-theory standard errors
 # Pretty close!
 lm1 = lm(PictureTarget.RT ~ Littered, data=rxntime)
 summary(lm1)
-sd(myboot)
+boot_stderr
+
 
 # A t-statistic is just a signal-to-noise ratio
-tstat1 = coef(lm1)/sd(myboot)
+tstat1 = coef(lm1)/boot_stderr
 tstat1
 
 # Notice that a two-sample t test
@@ -197,7 +202,7 @@ t.test(PictureTarget.RT ~ Littered, data=rxntime)
 # Can also extract a confidence interval
 confint(lm1, level=0.95)
 confint(myboot, level=0.95)
-cbind(coef(lm1) - 2*sd(myboot), coef(lm1) + 2*sd(myboot))
+cbind(coef(lm1) - 2*boot_stderr, coef(lm1) + 2*boot_stderr)
 
 
 # Extract SE's and confidence intervals for the larger model
@@ -206,7 +211,9 @@ summary(lm4)
 confint(lm4, level=0.95)
 
 # Now, by bootstrapping
-myboot = do(1000)*lm(PictureTarget.RT ~ Littered + FarAway + Littered:FarAway + factor(Subject), data=resample(rxntime))
+myboot = do(1000)*{
+  lm(PictureTarget.RT ~ Littered + FarAway + Littered:FarAway + factor(Subject), data=resample(rxntime))
+}
 confint(myboot, level=0.95)
 
 

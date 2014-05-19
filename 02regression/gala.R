@@ -9,6 +9,7 @@ plot(Species~Area, data=gala)
 # Looks much better on a log-log scale
 plot(log(Species) ~ log(Area), data=gala)
 
+# A linear model on a log-log scale is a power law on the original scale
 lm1 = lm(log(Species) ~ log(Area), data = gala)
 abline(lm1)
 summary(lm1)
@@ -30,7 +31,7 @@ plot(log(Area) ~ log(Elevation), data=gala)
 lm3 = lm(log(Species)~log(Area) + log(Elevation), data=gala)
 
 myboot = do(1000)*lm(log(Species)~log(Area) + log(Elevation), data=resample(gala))
-sd(myboot)
+apply(myboot, 2, sd)
 summary(lm3)
 
 ## Show the 3d plot
