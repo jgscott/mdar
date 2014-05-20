@@ -23,9 +23,15 @@ head(boot2)
 # The foreach package defines a for loop with a return value
 # Can be used for embarrassingly parallel computations
 library(foreach)
+# http://cran.r-project.org/web/packages/foreach/vignettes/foreach.pdf
+
+# library(iterators)  # defines iterators over more complex data structures
+# # http://cran.r-project.org/web/packages/iterators/vignettes/iterators.pdf
+
 library(doMC)
 registerDoMC(cores=4)
 
+NMC = 5000
 boot2 = foreach(i = 1:NMC, .combine=rbind) %dopar% {
   lmboot = lm(PictureTarget.RT ~ Littered + FarAway + Littered:FarAway, data=resample(rxntime))
   coef(lmboot)
