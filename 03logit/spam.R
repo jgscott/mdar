@@ -20,7 +20,9 @@ sigmoid = function(x) {
 curve(sigmoid, from=-3,to=3)
 
 
-
+boot1 = do(1000)*{
+  
+}
 
 # Quantifying uncertainty in the multiple logit model
 # Inference based on asymptotic normality

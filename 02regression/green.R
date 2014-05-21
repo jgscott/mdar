@@ -1,7 +1,7 @@
 library(mosaic)
 
 # Load data
-greenbuildings = read.csv("greenbuildings.csv", header=TRUE)
+greenbuildings = read.csv("green.csv", header=TRUE)
 
 summary(greenbuildings)
 
