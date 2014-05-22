@@ -41,7 +41,7 @@ shrink1 = 0.5*pred1 + 0.5*grandmean
 sum( (y2 - shrink1)^2 )
 
 # Let's examine a range of shrinkage factors
-gridsize = 100
+gridsize = 101
 mygrid = seq(0,1,length=gridsize)
 sse = rep(0, gridsize)  # creates an empty placeholder
 for(i in 1:gridsize) {

@@ -21,6 +21,10 @@ plot(counts ~ timesince1990, data=springbok)
 plot(counts ~ jitter(timesince1990), data=springbok)
 boxplot(counts~timesince1990, data=springbok)
 
+sqrt(mean(counts ~ timesince1990, data=springbok))
+sd(counts ~ timesince1990, data=springbok)
+
+
 # Doesn't appear to be an overall trend...
 # What about within sites?
 xyplot(counts ~ timesince1990  | site, data=springbok)
@@ -29,6 +33,9 @@ xyplot(counts ~ timesince1990  | site, data=springbok)
 
 # Let's model counts with main effects for site
 glm1 = glm(counts ~ site, data = springbok, family=poisson)
+glm1b = glm(counts ~ site - 1, data = springbok, family=poisson)
+
+
 
 # Every site coefficient looks significant because
 # site 1 is the baseline, and has high counts overall
@@ -39,6 +46,7 @@ contrast(glm1, list(site='2'), list(site = '6'))
 
 
 # And now with year-site interactions
+glm2a = glm(counts ~ site + timesince1990 + site:timesince1990, data = springbok, family=poisson(link="log"))
 glm2 = glm(counts ~ site*timesince1990, data = springbok, family=poisson(link="log"))
 summary(glm2)
 anova(glm2, test="LRT")

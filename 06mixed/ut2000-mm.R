@@ -39,10 +39,14 @@ xyplot(GPA ~ SAT.Q | School, data=ut2000)
 
 # Now a mixed-effects model
 # This says allow the intercept and SAT.Q slopes to change among the groups
-hlm2 = lmer(GPA ~ SAT.V + SAT.Q + (1+SAT.Q|School), data=ut2000)
+hlm2 = lmer(GPA ~ SAT.V + SAT.Q + (1+SAT.Q|School), data=ut2000s)
 coef(hlm2)
 anova(hlm1, hlm2)
 summary(hlm2)
+
+# Added this!
+ut2000s = ut2000
+ut2000s[,c(1,2,3,5)] = scale(ut2000s[,c(1,2,3,5)])
 
 r = ranef(hlm2, postVar=TRUE)
 dotplot(r)

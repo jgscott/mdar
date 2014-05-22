@@ -4,7 +4,7 @@ library(MASS)
 # Read in the data, and tell R what column the row labels are in
 # That way it doesn't think week is a categorical variable
 flutrends = read.csv("flutrends.csv", header=TRUE, row.names=1)
-flutrends2012 = read.csv("flutrends2012.csv", header=TRUE,row.names=1)
+flutrends2012 = read.csv("flutrends2012.csv", header=TRUE, row.names=1)
 
 # Which observations are actually present?
 # t = which(!is.na(flutrends$cdcflu))
